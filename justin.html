@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin Bieber Fan Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2d1b3d;
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #da70d6, #ff69b4);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate, bounce 3s ease-in-out infinite, rainbowText 4s linear infinite, shake 0.1s ease-in-out infinite;
+            background: linear-gradient(45deg, #ff69b4, #ffffff, #ff1493, #da70d6, #ff69b4);
+            background-size: 400% 400%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            text-shadow: 0 0 30px rgba(255,105,180,0.8);
+            transform-origin: center;
+        }
+
+        header h1:before {
+            content: '💖';
+            position: absolute;
+            left: -60px;
+            animation: spin 4s linear infinite;
+        }
+
+        header h1:after {
+            content: '💖';
+            position: absolute;
+            right: -60px;
+            animation: spin 4s linear infinite reverse;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,182,193,0.8); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255,105,180,1); }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .fan-counter {
+            background: linear-gradient(45deg, rgba(255,20,147,0.3), rgba(255,105,180,0.3));
+            border-radius: 25px;
+            padding: 15px 30px;
+            display: inline-block;
+            margin: 20px 0;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,105,180,0.8);
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .fan-counter:before {
+            content: '💕';
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            animation: heartPulse 2s ease-in-out infinite;
+        }
+
+        .fan-counter:after {
+            content: '💕';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            animation: heartPulse 2s ease-in-out infinite 1s;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .photo-card {
+            background: linear-gradient(135deg, rgba(255,182,193,0.9), rgba(255,255,255,0.95));
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(255,20,147,0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid rgba(255,105,180,0.6);
+            position: relative;
+            animation: wiggle 6s ease-in-out infinite;
+        }
+
+        .photo-card:nth-child(even) {
+            animation: wiggle 6s ease-in-out infinite 1s;
+        }
+
+        .photo-card:nth-child(3n) {
+            animation: wiggle 6s ease-in-out infinite 2s;
+        }
+
+        .photo-card:before {
+            content: '💖';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            font-size: 1.5em;
+            animation: heartFloat 2s ease-in-out infinite;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-20px) rotate(5deg) scale(1.05);
+            box-shadow: 0 30px 60px rgba(255,20,147,0.8);
+            border-color: rgba(255,105,180,1);
+            animation: jello 0.8s ease-in-out, wiggle 6s ease-in-out infinite;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4a4a4a;
+        }
+
+        .card-description {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .bio-section {
+            background: linear-gradient(135deg, rgba(255,182,193,0.8), rgba(255,255,255,0.9));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 15px 40px rgba(255,20,147,0.3);
+            border: 2px solid rgba(255,105,180,0.5);
+            position: relative;
+        }
+
+        .bio-section:before {
+            content: '💝💕💝💕💝';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+
+        .bio-section h2 {
+            color: #ff1493;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+            position: relative;
+        }
+
+        .bio-section h2:before {
+            content: '💗 ';
+            animation: heartPulse 1.5s ease-in-out infinite;
+        }
+
+        .bio-section h2:after {
+            content: ' 💗';
+            animation: heartPulse 1.5s ease-in-out infinite 0.5s;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #da70d6);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transform: scale(1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="20" fill="rgba(255,255,255,0.1)">💖</text></svg>') repeat;
+            animation: sparkle 10s linear infinite;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(255,20,147,0.6);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .playlist {
+            background: linear-gradient(135deg, rgba(255,182,193,0.8), rgba(255,255,255,0.9));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 2px solid rgba(255,105,180,0.5);
+            position: relative;
+        }
+
+        .playlist:before {
+            content: '🎵💖🎵💖🎵';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+
+        .playlist h2 {
+            color: #ff1493;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .playlist h2:before {
+            content: '🎶 ';
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .playlist h2:after {
+            content: ' 🎶';
+            animation: bounce 2s ease-in-out infinite 0.5s;
+        }
+
+        .song-list {
+            list-style: none;
+        }
+
+        .song-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(90deg, rgba(255,182,193,0.3), rgba(255,105,180,0.1));
+            border-radius: 12px;
+            border-left: 4px solid #ff1493;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .song-item:before {
+            content: '💕';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .song-item:hover {
+            background: linear-gradient(90deg, rgba(255,182,193,0.5), rgba(255,105,180,0.3));
+            transform: translateX(10px) scale(1.02);
+            border-left-width: 6px;
+            box-shadow: 5px 5px 15px rgba(255,20,147,0.3);
+        }
+
+        .song-item:hover:before {
+            opacity: 1;
+            animation: heartBeat 0.6s ease-in-out;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            margin-top: 50px;
+        }
+
+        .heart {
+            color: #ff1493;
+            font-size: 1.5em;
+            animation: heartbeat 1.5s ease-in-out infinite, colorShift 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(10deg); }
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1.4); }
+            75% { transform: scale(1.2); }
+        }
+
+        @keyframes colorShift {
+            0% { color: #ff1493; }
+            33% { color: #ff69b4; }
+            66% { color: #da70d6; }
+            100% { color: #ff1493; }
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
+
+        @keyframes rainbowText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            10% { transform: translateX(-1px) translateY(-1px); }
+            20% { transform: translateX(1px) translateY(1px); }
+            30% { transform: translateX(-1px) translateY(1px); }
+            40% { transform: translateX(1px) translateY(-1px); }
+            50% { transform: translateX(-1px) translateY(-1px); }
+            60% { transform: translateX(1px) translateY(1px); }
+            70% { transform: translateX(-1px) translateY(1px); }
+            80% { transform: translateX(1px) translateY(-1px); }
+            90% { transform: translateX(-1px) translateY(-1px); }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        @keyframes jello {
+            0%, 100% { transform: scale3d(1, 1, 1); }
+            30% { transform: scale3d(1.25, 0.75, 1); }
+            40% { transform: scale3d(0.75, 1.25, 1); }
+            50% { transform: scale3d(1.15, 0.85, 1); }
+            65% { transform: scale3d(0.95, 1.05, 1); }
+            75% { transform: scale3d(1.05, 0.95, 1); }
+        }
+
+        @keyframes rubber {
+            0% { transform: scale3d(1, 1, 1); }
+            30% { transform: scale3d(1.25, 0.75, 1); }
+            40% { transform: scale3d(0.75, 1.25, 1); }
+            50% { transform: scale3d(1.15, 0.85, 1); }
+            65% { transform: scale3d(0.95, 1.05, 1); }
+            75% { transform: scale3d(1.05, 0.95, 1); }
+            100% { transform: scale3d(1, 1, 1); }
+        }
+
+        /* Floating Hearts Background */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        /* Pulsating Background Elements */
+        .pulsating-bg {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .pulse-1 {
+            top: 10%;
+            left: 10%;
+            background: radial-gradient(circle, rgba(255,105,180,0.3), transparent);
+            animation: pulse-slow 4s ease-in-out infinite;
+        }
+
+        .pulse-2 {
+            top: 60%;
+            right: 10%;
+            background: radial-gradient(circle, rgba(255,20,147,0.2), transparent);
+            animation: pulse-slow 3s ease-in-out infinite 1s;
+        }
+
+        .pulse-3 {
+            bottom: 20%;
+            left: 20%;
+            background: radial-gradient(circle, rgba(218,112,214,0.25), transparent);
+            animation: pulse-slow 5s ease-in-out infinite 2s;
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 2em;
+            animation: floatUp 15s linear infinite;
+            opacity: 0.7;
+        }
+
+        .heart-float:nth-child(1) { left: 10%; animation-delay: 0s; font-size: 1.5em; }
+        .heart-float:nth-child(2) { left: 20%; animation-delay: 2s; font-size: 2.2em; }
+        .heart-float:nth-child(3) { left: 30%; animation-delay: 4s; font-size: 1.8em; }
+        .heart-float:nth-child(4) { left: 40%; animation-delay: 6s; font-size: 2.5em; }
+        .heart-float:nth-child(5) { left: 50%; animation-delay: 8s; font-size: 1.7em; }
+        .heart-float:nth-child(6) { left: 60%; animation-delay: 10s; font-size: 2.1em; }
+        .heart-float:nth-child(7) { left: 70%; animation-delay: 12s; font-size: 1.9em; }
+        .heart-float:nth-child(8) { left: 80%; animation-delay: 14s; font-size: 2.3em; }
+        .heart-float:nth-child(9) { left: 90%; animation-delay: 16s; font-size: 1.6em; }
+        .heart-float:nth-child(10) { left: 5%; animation-delay: 18s; font-size: 2.4em; }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .modal img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #ff6b6b;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pulsating Background Elements -->
+    <div class="pulsating-bg pulse-1"></div>
+    <div class="pulsating-bg pulse-2"></div>
+    <div class="pulsating-bg pulse-3"></div>
+
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts">
+        <div class="heart-float">💖</div>
+        <div class="heart-float">💕</div>
+        <div class="heart-float">💗</div>
+        <div class="heart-float">💓</div>
+        <div class="heart-float">💖</div>
+        <div class="heart-float">💝</div>
+        <div class="heart-float">💕</div>
+        <div class="heart-float">💗</div>
+        <div class="heart-float">💓</div>
+        <div class="heart-float">💖</div>
+        <div class="heart-float">✨</div>
+        <div class="heart-float">🌟</div>
+        <div class="heart-float">💫</div>
+        <div class="heart-float">⭐</div>
+        <div class="heart-float">🔥</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Justin Bieber</h1>
+            <p class="subtitle">✨ The Ultimate Fan Page ✨</p>
+            <div class="fan-counter">
+                <span id="fanCount">0</span> Believers Online 💖
+            </div>
+        </header>
+
+        <section class="bio-section">
+            <h2>About Justin</h2>
+            <p>Justin Drew Bieber is a Canadian singer who was discovered at age 13 by talent manager Scooter Braun through his YouTube videos covering songs. Born on March 1, 1994, in London, Ontario, Justin has become one of the world's best-selling music artists with over 150 million records sold worldwide.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">150M+</span>
+                    Records Sold
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">114M+</span>
+                    YouTube Subscribers
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">8</span>
+                    Grammy Awards
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">21</span>
+                    Billboard Hot 100 #1s
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <div class="photo-card" onclick="openModal('img/justin1.jpg')">
+                <img src="img/justin1.jpg" alt="Justin Bieber Photo 1">
+                <div class="card-content">
+                    <div class="card-title">Early Days</div>
+                    <div class="card-description">Young Justin starting his musical journey</div>
+                </div>
+            </div>
+
+            <div class="photo-card" onclick="openModal('img/justin2.jpg')">
+                <img src="img/justin2.jpg" alt="Justin Bieber Photo 2">
+                <div class="card-content">
+                    <div class="card-title">Rising Star</div>
+                    <div class="card-description">Justin's breakthrough moment</div>
+                </div>
+            </div>
+
+            <div class="photo-card" onclick="openModal('img/justin3.jpg')">
+                <img src="img/justin3.jpg" alt="Justin Bieber Photo 3">
+                <div class="card-content">
+                    <div class="card-title">Performance</div>
+                    <div class="card-description">Justin captivating audiences worldwide</div>
+                </div>
+            </div>
+
+            <div class="photo-card" onclick="openModal('img/justin4.jpg')">
+                <img src="img/justin4.jpg" alt="Justin Bieber Photo 4">
+                <div class="card-content">
+                    <div class="card-title">Studio Sessions</div>
+                    <div class="card-description">Creating musical magic in the studio</div>
+                </div>
+            </div>
+
+            <div class="photo-card" onclick="openModal('img/justin5.jpg')">
+                <img src="img/justin5.jpg" alt="Justin Bieber Photo 5">
+                <div class="card-content">
+                    <div class="card-title">Red Carpet</div>
+                    <div class="card-description">Justin at glamorous award shows</div>
+                </div>
+            </div>
+
+            <div class="photo-card" onclick="openModal('img/justin6.jpg')">
+                <img src="img/justin6.jpg" alt="Justin Bieber Photo 6">
+                <div class="card-content">
+                    <div class="card-title">Latest Era</div>
+                    <div class="card-description">Justin's evolution as an artist</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="playlist">
+            <h2>Top Hits Playlist</h2>
+            <ul class="song-list">
+                <li class="song-item" onclick="playPreview('Sorry')">🎵 Sorry</li>
+                <li class="song-item" onclick="playPreview('Love Yourself')">🎵 Love Yourself</li>
+                <li class="song-item" onclick="playPreview('What Do You Mean?')">🎵 What Do You Mean?</li>
+                <li class="song-item" onclick="playPreview('Baby')">🎵 Baby (feat. Ludacris)</li>
+                <li class="song-item" onclick="playPreview('Intentions')">🎵 Intentions (feat. Quavo)</li>
+                <li class="song-item" onclick="playPreview('Peaches')">🎵 Peaches (feat. Daniel Caesar & Giveon)</li>
+                <li class="song-item" onclick="playPreview('Stay')">🎵 Stay (with The Kid LAROI)</li>
+                <li class="song-item" onclick="playPreview('Ghost')">🎵 Ghost</li>
+            </ul>
+        </section>
+
+        <footer class="footer">
+            <p>💖 Made with <span class="heart">💕</span> by Believers for Believers 💖</p>
+            <p>✨ &copy; 2024 Justin Bieber Fan Page. All rights reserved. ✨</p>
+            <p>💝 Stay crazy, stay in love! 💝</p>
+        </footer>
+    </div>
+
+    <!-- Modal for image viewing -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Justin Bieber">
+        </div>
+    </div>
+
+    <script>
+        // Animated fan counter
+        let fanCount = 0;
+        const targetFans = 15847;
+        const fanCountElement = document.getElementById('fanCount');
+
+        function animateCounter() {
+            if (fanCount < targetFans) {
+                fanCount += Math.floor(Math.random() * 100) + 50;
+                if (fanCount > targetFans) fanCount = targetFans;
+                fanCountElement.textContent = fanCount.toLocaleString();
+                setTimeout(animateCounter, 50);
+            }
+        }
+
+        // Start counter animation when page loads
+        window.addEventListener('load', function() {
+            setTimeout(animateCounter, 1000);
+        });
+
+        // Modal functionality
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+            
+            // Add animation class
+            modal.style.animation = 'fadeIn 0.3s ease';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Song preview functionality
+        function playPreview(songName) {
+            // Create a visual feedback for song selection
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 25px;
+                font-weight: bold;
+                z-index: 1001;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                animation: slideIn 0.5s ease, slideOut 0.5s ease 2.5s forwards;
+            `;
+            notification.textContent = `🎵 Now playing: ${songName}`;
+            document.body.appendChild(notification);
+
+            // Remove notification after animation
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 3000);
+
+            console.log(`Playing preview of: ${songName}`);
+        }
+
+        // Add CSS animations for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add some interactive effects on scroll
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            const header = document.querySelector('header');
+            if (header) {
+                header.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Add click effects to stat cards
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 0.6s ease';
+                }, 10);
+            });
+        });
+
+        // Add pulse animation
+        const pulseStyle = document.createElement('style');
+        pulseStyle.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(pulseStyle);
+
+        // Random fan count updates
+        setInterval(function() {
+            const currentFans = parseInt(fanCountElement.textContent.replace(',', ''));
+            const change = Math.floor(Math.random() * 20) - 10;
+            const newCount = Math.max(10000, currentFans + change);
+            fanCountElement.textContent = newCount.toLocaleString();
+        }, 5000);
+
+        // Heart explosion effect on click
+        function createHeartExplosion(x, y) {
+            const hearts = ['💖', '💕', '💗', '💓', '💝', '✨', '🌟'];
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.cssText = `
+                    position: fixed;
+                    left: ${x}px;
+                    top: ${y}px;
+                    font-size: ${Math.random() * 20 + 15}px;
+                    pointer-events: none;
+                    z-index: 1000;
+                    animation: heartExplosion 2s ease-out forwards;
+                    transform: translate(-50%, -50%);
+                `;
+                
+                // Random direction
+                const angle = (360 / 12) * i;
+                const distance = Math.random() * 200 + 100;
+                heart.style.setProperty('--end-x', `${Math.cos(angle * Math.PI / 180) * distance}px`);
+                heart.style.setProperty('--end-y', `${Math.sin(angle * Math.PI / 180) * distance}px`);
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    if (heart.parentNode) heart.parentNode.removeChild(heart);
+                }, 2000);
+            }
+        }
+
+        // Add heart explosion CSS
+        const explosionStyle = document.createElement('style');
+        explosionStyle.textContent = `
+            @keyframes heartExplosion {
+                0% {
+                    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(1.5) rotate(180deg);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(0) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(explosionStyle);
+
+        // Add click listeners to elements for heart explosions
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.photo-card') || e.target.closest('.stat-card') || e.target.closest('h1')) {
+                createHeartExplosion(e.clientX, e.clientY);
+            }
+        });
+
+        // Crazy bouncing effect on stat cards
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach((card, index) => {
+            card.addEventListener('mouseenter', function() {
+                this.style.animation = `rubber 0.8s ease-in-out, bounce 2s ease-in-out infinite ${index * 0.2}s`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.animation = '';
+            });
+        });
+
+        // Make fan counter extra crazy
+        const fanCounter = document.querySelector('.fan-counter');
+        fanCounter.addEventListener('click', function() {
+            this.style.animation = 'jello 1s ease-in-out, float 3s ease-in-out infinite';
+            createHeartExplosion(
+                this.getBoundingClientRect().left + this.offsetWidth / 2,
+                this.getBoundingClientRect().top + this.offsetHeight / 2
+            );
+        });
+
+        // Add random sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.textContent = '✨';
+            sparkle.style.cssText = `
+                position: fixed;
+                left: ${Math.random() * window.innerWidth}px;
+                top: ${Math.random() * window.innerHeight}px;
+                font-size: ${Math.random() * 15 + 10}px;
+                pointer-events: none;
+                z-index: 0;
+                animation: sparkleEffect 3s ease-out forwards;
+                opacity: 0;
+            `;
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                if (sparkle.parentNode) sparkle.parentNode.removeChild(sparkle);
+            }, 3000);
+        }
+
+        const sparkleStyle = document.createElement('style');
+        sparkleStyle.textContent = `
+            @keyframes sparkleEffect {
+                0% { opacity: 0; transform: scale(0) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+                100% { opacity: 0; transform: scale(0) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(sparkleStyle);
+
+        // Create random sparkles
+        setInterval(createSparkle, 2000);
+
+        // JUSTIN BIEBER TEXT EXPLOSION EFFECT!
+        function explodeJustin() {
+            const h1 = document.querySelector('header h1');
+            const originalText = h1.textContent;
+            const rect = h1.getBoundingClientRect();
+            
+            // Hide original text
+            h1.style.opacity = '0';
+            
+            // Create individual letters
+            const letters = originalText.split('');
+            const letterElements = [];
+            
+            letters.forEach((letter, index) => {
+                if (letter === ' ') return; // Skip spaces
+                
+                const letterEl = document.createElement('div');
+                letterEl.textContent = letter;
+                letterEl.style.cssText = `
+                    position: fixed;
+                    left: ${rect.left + (index * (rect.width / originalText.length))}px;
+                    top: ${rect.top + rect.height / 2}px;
+                    font-size: 3.5em;
+                    font-family: 'Comic Sans MS', Arial, sans-serif;
+                    background: linear-gradient(45deg, #ff69b4, #ffffff, #ff1493, #da70d6, #ff69b4);
+                    background-size: 400% 400%;
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    font-weight: bold;
+                    pointer-events: none;
+                    z-index: 1001;
+                    transform: translate(-50%, -50%);
+                    text-shadow: 0 0 30px rgba(255,105,180,0.8);
+                `;
+                
+                document.body.appendChild(letterEl);
+                letterElements.push(letterEl);
+                
+                // Animate letter explosion
+                setTimeout(() => {
+                    const angle = Math.random() * 360;
+                    const distance = Math.random() * 400 + 200;
+                    const endX = Math.cos(angle * Math.PI / 180) * distance;
+                    const endY = Math.sin(angle * Math.PI / 180) * distance;
+                    
+                    letterEl.style.transition = 'all 1s ease-out';
+                    letterEl.style.transform = `translate(calc(-50% + ${endX}px), calc(-50% + ${endY}px)) rotate(${Math.random() * 720}deg) scale(0)`;
+                    letterEl.style.opacity = '0';
+                }, index * 50);
+            });
+            
+            // Create heart explosion during letter explosion
+            setTimeout(() => {
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        createHeartExplosion(
+                            rect.left + rect.width / 2,
+                            rect.top + rect.height / 2
+                        );
+                    }, i * 100);
+                }
+            }, 200);
+            
+            // Start reassembly after explosion
+            setTimeout(() => {
+                reassembleJustin(letterElements, originalText, rect);
+            }, 2000);
+        }
+        
+        function reassembleJustin(letterElements, originalText, originalRect) {
+            const h1 = document.querySelector('header h1');
+            
+            // Create new letter positions for reassembly
+            letterElements.forEach((letterEl, index) => {
+                if (!letterEl || !letterEl.parentNode) return;
+                
+                const letter = originalText[index];
+                if (letter === ' ') return;
+                
+                // Reset and start reassembly animation
+                letterEl.style.transition = 'all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                letterEl.style.transform = 'translate(-50%, -50%) rotate(0deg) scale(1)';
+                letterEl.style.opacity = '1';
+                
+                // Move back to original position
+                setTimeout(() => {
+                    letterEl.style.left = `${originalRect.left + (index * (originalRect.width / originalText.length))}px`;
+                    letterEl.style.top = `${originalRect.top + originalRect.height / 2}px`;
+                }, index * 80);
+            });
+            
+            // Show original text and clean up
+            setTimeout(() => {
+                h1.style.transition = 'opacity 0.5s ease-in';
+                h1.style.opacity = '1';
+                
+                // Clean up letter elements
+                letterElements.forEach(letterEl => {
+                    if (letterEl && letterEl.parentNode) {
+                        letterEl.parentNode.removeChild(letterEl);
+                    }
+                });
+                
+                // Add a final celebration effect
+                setTimeout(() => {
+                    createHeartExplosion(
+                        originalRect.left + originalRect.width / 2,
+                        originalRect.top + originalRect.height / 2
+                    );
+                }, 300);
+                
+            }, 1500);
+        }
+        
+        // Add click listener to Justin title for explosion
+        document.querySelector('header h1').addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent other click handlers
+            explodeJustin();
+        });
+        
+        // Add cursor pointer to indicate it's clickable
+        const titleStyle = document.createElement('style');
+        titleStyle.textContent = `
+            header h1 {
+                cursor: pointer;
+                user-select: none;
+            }
+            header h1:hover {
+                animation: glow 2s ease-in-out infinite alternate, bounce 3s ease-in-out infinite, rainbowText 4s linear infinite, shake 0.05s ease-in-out infinite !important;
+            }
+        `;
+        document.head.appendChild(titleStyle);
+
+        // JUSTIN PHOTO EXPLOSION EFFECT! 💥📸
+        function explodePhoto(photoCard) {
+            const img = photoCard.querySelector('img');
+            if (!img || photoCard.classList.contains('exploding')) return;
+            
+            photoCard.classList.add('exploding');
+            const rect = img.getBoundingClientRect();
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size to match image
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            
+            // Create temporary image to draw on canvas
+            const tempImg = new Image();
+            tempImg.onload = function() {
+                try {
+                    ctx.drawImage(tempImg, 0, 0, canvas.width, canvas.height);
+                
+                // Hide original image
+                img.style.opacity = '0';
+                
+                // Create image fragments
+                const fragments = [];
+                const fragmentSize = 20; // Size of each fragment
+                const cols = Math.ceil(canvas.width / fragmentSize);
+                const rows = Math.ceil(canvas.height / fragmentSize);
+                
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const x = col * fragmentSize;
+                        const y = row * fragmentSize;
+                        const width = Math.min(fragmentSize, canvas.width - x);
+                        const height = Math.min(fragmentSize, canvas.height - y);
+                        
+                        // Create fragment canvas
+                        const fragCanvas = document.createElement('canvas');
+                        const fragCtx = fragCanvas.getContext('2d');
+                        fragCanvas.width = width;
+                        fragCanvas.height = height;
+                        
+                        // Draw fragment
+                        fragCtx.drawImage(canvas, x, y, width, height, 0, 0, width, height);
+                        
+                        // Create fragment element
+                        const fragElement = document.createElement('div');
+                        fragElement.style.cssText = `
+                            position: fixed;
+                            left: ${rect.left + x}px;
+                            top: ${rect.top + y}px;
+                            width: ${width}px;
+                            height: ${height}px;
+                            background-image: url(${fragCanvas.toDataURL()});
+                            background-size: contain;
+                            pointer-events: none;
+                            z-index: 1002;
+                            transform-origin: center;
+                        `;
+                        
+                        document.body.appendChild(fragElement);
+                        fragments.push(fragElement);
+                        
+                        // Animate fragment explosion
+                        setTimeout(() => {
+                            const angle = Math.random() * 360;
+                            const distance = Math.random() * 300 + 100;
+                            const endX = Math.cos(angle * Math.PI / 180) * distance;
+                            const endY = Math.sin(angle * Math.PI / 180) * distance;
+                            const rotation = Math.random() * 720 - 360;
+                            
+                            fragElement.style.transition = 'all 1.2s ease-out';
+                            fragElement.style.transform = `translate(${endX}px, ${endY}px) rotate(${rotation}deg) scale(0)`;
+                            fragElement.style.opacity = '0';
+                        }, (row + col) * 20);
+                    }
+                }
+                
+                // Create heart explosion during fragment explosion
+                setTimeout(() => {
+                    for (let i = 0; i < 25; i++) {
+                        setTimeout(() => {
+                            createHeartExplosion(
+                                rect.left + rect.width / 2,
+                                rect.top + rect.height / 2
+                            );
+                        }, i * 80);
+                    }
+                }, 300);
+                
+                // Start reassembly
+                setTimeout(() => {
+                    reassemblePhoto(fragments, img, photoCard);
+                }, 2500);
+                
+                } catch(error) {
+                    console.log('Canvas error, using simpler explosion:', error);
+                    // Fallback to simpler explosion without canvas
+                    simplePhotoExplosion(img, photoCard);
+                }
+            };
+            
+            tempImg.onerror = function() {
+                console.log('Image loading failed, using simpler explosion');
+                simplePhotoExplosion(img, photoCard);
+            };
+            
+            tempImg.src = img.src;
+        }
+        
+        function reassemblePhoto(fragments, originalImg, photoCard) {
+            // Animate fragments back to original positions
+            fragments.forEach((fragment, index) => {
+                const delay = index * 15;
+                
+                setTimeout(() => {
+                    fragment.style.transition = 'all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                    fragment.style.transform = 'translate(0px, 0px) rotate(0deg) scale(1)';
+                    fragment.style.opacity = '1';
+                }, delay);
+            });
+            
+            // Show original image and cleanup
+            setTimeout(() => {
+                originalImg.style.transition = 'opacity 0.5s ease-in';
+                originalImg.style.opacity = '1';
+                
+                // Clean up fragments
+                fragments.forEach(fragment => {
+                    if (fragment && fragment.parentNode) {
+                        fragment.parentNode.removeChild(fragment);
+                    }
+                });
+                
+                photoCard.classList.remove('exploding');
+                
+                // Final celebration
+                setTimeout(() => {
+                    const rect = originalImg.getBoundingClientRect();
+                    createHeartExplosion(
+                        rect.left + rect.width / 2,
+                        rect.top + rect.height / 2
+                    );
+                }, 200);
+                
+            }, 1200);
+        }
+        
+        // Simple photo explosion fallback (without canvas)
+        function simplePhotoExplosion(img, photoCard) {
+            const rect = img.getBoundingClientRect();
+            
+            // Hide original image
+            img.style.opacity = '0';
+            
+            // Create 16 simple div fragments
+            const fragments = [];
+            for (let i = 0; i < 16; i++) {
+                const fragment = document.createElement('div');
+                fragment.style.cssText = `
+                    position: fixed;
+                    left: ${rect.left + (i % 4) * (rect.width / 4)}px;
+                    top: ${rect.top + Math.floor(i / 4) * (rect.height / 4)}px;
+                    width: ${rect.width / 4}px;
+                    height: ${rect.height / 4}px;
+                    background-image: url(${img.src});
+                    background-size: ${rect.width}px ${rect.height}px;
+                    background-position: ${-(i % 4) * (rect.width / 4)}px ${-Math.floor(i / 4) * (rect.height / 4)}px;
+                    pointer-events: none;
+                    z-index: 1002;
+                    border-radius: 5px;
+                `;
+                
+                document.body.appendChild(fragment);
+                fragments.push(fragment);
+                
+                // Animate explosion
+                setTimeout(() => {
+                    const angle = Math.random() * 360;
+                    const distance = Math.random() * 200 + 100;
+                    const endX = Math.cos(angle * Math.PI / 180) * distance;
+                    const endY = Math.sin(angle * Math.PI / 180) * distance;
+                    
+                    fragment.style.transition = 'all 1s ease-out';
+                    fragment.style.transform = `translate(${endX}px, ${endY}px) rotate(${Math.random() * 360}deg) scale(0)`;
+                    fragment.style.opacity = '0';
+                }, i * 50);
+            }
+            
+            // Heart explosions
+            setTimeout(() => {
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        createHeartExplosion(
+                            rect.left + rect.width / 2,
+                            rect.top + rect.height / 2
+                        );
+                    }, i * 100);
+                }
+            }, 200);
+            
+            // Reassemble
+            setTimeout(() => {
+                fragments.forEach((fragment, index) => {
+                    setTimeout(() => {
+                        fragment.style.transition = 'all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                        fragment.style.transform = 'translate(0px, 0px) rotate(0deg) scale(1)';
+                        fragment.style.opacity = '1';
+                    }, index * 30);
+                });
+                
+                // Show original and cleanup
+                setTimeout(() => {
+                    img.style.opacity = '1';
+                    fragments.forEach(fragment => {
+                        if (fragment.parentNode) fragment.parentNode.removeChild(fragment);
+                    });
+                    photoCard.classList.remove('exploding');
+                    
+                    // Final heart
+                    createHeartExplosion(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                }, 800);
+            }, 1500);
+        }
+        
+        // Add click listeners to all photo cards for explosion
+        document.querySelectorAll('.photo-card').forEach(photoCard => {
+            // Remove existing onclick attribute to prevent modal interference
+            photoCard.removeAttribute('onclick');
+            
+            photoCard.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (!this.classList.contains('exploding')) {
+                    console.log('Exploding photo!'); // Debug log
+                    explodePhoto(this);
+                }
+            });
+            
+            // Add visual feedback for clickability
+            photoCard.style.cursor = 'pointer';
+        });
+        
+        // Add explosion indicator styles
+        const photoExplosionStyle = document.createElement('style');
+        photoExplosionStyle.textContent = `
+            .photo-card {
+                position: relative;
+                overflow: visible !important;
+            }
+            
+            .photo-card:hover::after {
+                content: '💥 CLICK TO EXPLODE! 💥';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 20, 147, 0.9);
+                color: white;
+                padding: 10px 15px;
+                border-radius: 25px;
+                font-size: 0.8em;
+                font-weight: bold;
+                white-space: nowrap;
+                z-index: 10;
+                animation: pulse 1s ease-in-out infinite;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .photo-card:hover::after {
+                opacity: 1;
+            }
+            
+            .photo-card.exploding::after {
+                display: none;
+            }
+        `;
+        document.head.appendChild(photoExplosionStyle);
+
+        console.log('🎵✨💥📸 Justin Photos loaded with EXPLOSIVE POWERS! Click any photo! 📸💥✨🎵');
+    </script>
+</body>
+</html> 
