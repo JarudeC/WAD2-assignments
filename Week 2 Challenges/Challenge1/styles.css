@@ -1,0 +1,106 @@
+/* styles.css - Challenge #1 (Skeleton) */
+*{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: azure;
+    color: black;
+    margin: 0;
+}
+
+.container {
+    margin: auto;
+    text-align: center;
+    padding: 15px;
+    max-width: 800px;
+}
+
+h1, .park-name {
+    color: deeppink;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.tagline {
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.about {
+    text-align: left;
+}
+
+h2 {
+    padding: 20px 0 20px 0;
+}
+
+p {
+    padding-bottom: 10px;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.mascot-placeholder {
+    border: 3px black solid;
+    border-radius: 10%;
+    width: 300px;
+    background-color: white;
+}
+
+#mascot-image {
+    background-color: white;
+    width: 200px;
+    height: 200px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 15px 0 20px 0;
+}
+
+.buy-tickets {
+    color: white;
+    font-weight: bold;
+    background-color: greenyellow;
+    border-radius: 15px;
+    border: 2px black solid;
+    padding: 10px 15px 10px 15px;
+    margin: 0 8px 0 8px;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(19, 181, 98, 0.4);
+}
+.buy-tickets:hover{
+    cursor: pointer;
+    background-color: green;
+}
+
+.make-donation {
+    color: white;
+    font-weight: bold;
+    background-color: blue;
+    border-radius: 15px;
+    border: 2px black solid;
+    padding: 10px 15px 10px 15px;
+    margin: 0 8px 0 8px;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(185, 20, 119, 0.619);
+}
+
+.make-donation:hover{
+    cursor: pointer;
+    background-color: green;
+}
+
+.site-footer {
+    font-size: small;
+    color: grey;
+    margin-top: auto;
+    border-top: 1px solid black;
+}
