@@ -1,4 +1,149 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Weather API Configuration
+    const weatherApiKey = '0ec4d4a178a5e65314a3b24c1284b4b4';
+    const weatherWidget = document.getElementById('weather-widget');
+
+    // Function to get user's location and fetch weather
+    async function fetchWeather() {
+        try {
+            // Get user's location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        await getWeatherData(lat, lon);
+                    },
+                    async () => {
+                        // If location denied, default to a city (New York)
+                        await getWeatherByCity('New York');
+                    }
+                );
+            } else {
+                // If geolocation not supported, default to a city
+                await getWeatherByCity('New York');
+            }
+        } catch (error) {
+            console.error('Error fetching weather:', error);
+            displayWeatherError();
+        }
+    }
+
+    // Fetch weather data by coordinates
+    async function getWeatherData(lat, lon) {
+        try {
+            const response = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
+                params: {
+                    lat: lat,
+                    lon: lon,
+                    appid: weatherApiKey,
+                    units: 'metric'
+                }
+            });
+            displayWeather(response.data);
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            displayWeatherError();
+        }
+    }
+
+    // Fetch weather data by city name
+    async function getWeatherByCity(city) {
+        try {
+            const response = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
+                params: {
+                    q: city,
+                    appid: weatherApiKey,
+                    units: 'metric'
+                }
+            });
+            displayWeather(response.data);
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            displayWeatherError();
+        }
+    }
+
+    // Display weather data in the widget
+    function displayWeather(data) {
+        const temp = Math.round(data.main.temp);
+        const feelsLike = Math.round(data.main.feels_like);
+        const description = data.weather[0].description;
+        const icon = data.weather[0].icon;
+        const city = data.name;
+        const country = data.sys.country;
+        const humidity = data.main.humidity;
+        const windSpeed = data.wind.speed;
+
+        weatherWidget.innerHTML = `
+            <div class="weather-content">
+                <div class="weather-header">
+                    <h3 class="weather-location">
+                        <i class="fas fa-map-marker-alt"></i> ${city}, ${country}
+                    </h3>
+                    <div class="weather-search">
+                        <input type="text" id="city-search" placeholder="Search city..." class="weather-search-input">
+                        <button id="search-btn" class="weather-search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="weather-main">
+                    <div class="weather-icon-container">
+                        <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${description}" class="weather-icon">
+                    </div>
+                    <div class="weather-info">
+                        <div class="weather-temp">${temp}°C</div>
+                        <div class="weather-description">${description}</div>
+                        <div class="weather-feels-like">Feels like ${feelsLike}°C</div>
+                    </div>
+                </div>
+                <div class="weather-details">
+                    <div class="weather-detail">
+                        <i class="fas fa-tint"></i>
+                        <span>Humidity: ${humidity}%</span>
+                    </div>
+                    <div class="weather-detail">
+                        <i class="fas fa-wind"></i>
+                        <span>Wind: ${windSpeed} m/s</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Add search functionality
+        document.getElementById('search-btn').addEventListener('click', searchWeather);
+        document.getElementById('city-search').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchWeather();
+            }
+        });
+    }
+
+    // Search weather for a specific city
+    function searchWeather() {
+        const searchInput = document.getElementById('city-search');
+        const city = searchInput.value.trim();
+        if (city) {
+            weatherWidget.innerHTML = '<div class="weather-loading"><i class="fas fa-spinner fa-spin"></i> Loading weather...</div>';
+            getWeatherByCity(city);
+        }
+    }
+
+    // Display error message
+    function displayWeatherError() {
+        weatherWidget.innerHTML = `
+            <div class="weather-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Unable to fetch weather data</p>
+                <button onclick="location.reload()" class="btn btn-sm btn-outline-light mt-2">Retry</button>
+            </div>
+        `;
+    }
+
+    // Initialize weather widget
+    fetchWeather();
+
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach(link => {
